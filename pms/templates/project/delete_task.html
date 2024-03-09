@@ -1,0 +1,6 @@
+<h4>Are you sure you want to delete {{ module.name }}?</h4>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    {% comment %} <a href="{% url 'list' %}" class="btn btn-info">Cancel</a> {% endcomment %}
+</form>

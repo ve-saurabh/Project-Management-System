@@ -1,0 +1,39 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
+          <h6>Project DETAIL</h6>
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project Name</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Technology</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Estimated Hours</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start Date</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ project.name }}</td>
+                  <td class="text-center">{{ project.technology }}</td>
+                  <td class="text-center">{{ project.estimated_hours }}</td>
+                  <td class="text-center">{{ project.startDate }}</td>
+                  <td class="text-center">{{ project.endDate }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
