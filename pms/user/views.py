@@ -13,7 +13,7 @@ from django.contrib.auth.views import LoginView
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from project.models import Project
+from project.models import Project,Task
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -112,8 +112,8 @@ class DeveloperDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         #logic to get all projects
         context = {}
-        projects = Project.objects.all().values() #select * from employee
-        context["projects"] = projects
+        tasks = Task.objects.all().values() #select * from employee
+        context["tasks"] = tasks
         return render(request, 'user/developer_dashboard.html', context)
     
     template_name = 'user/developer_dashboard.html'
