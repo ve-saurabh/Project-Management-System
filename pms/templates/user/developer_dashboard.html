@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1 class="mb-0">Developer Dashboard</h1>
 </head>
 <body>
     <div class="row mt-5">
@@ -37,7 +36,7 @@
                                                         <span class="badge badge-sm bg-gradient-success">{{task.is_assigned}}</span>
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        {% if task.priority == "High" %}
+                                                        {% if task.priority == "High" %} 
                                                             <span class="text-danger text-xs font-weight-bold">{{task.priority}}</span>
                                                         {% elif task.priority == "Medium" %}
                                                             <span class="text-warning text-xs font-weight-bold">{{task.priority}}</span>

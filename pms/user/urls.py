@@ -10,4 +10,5 @@ urlpatterns = [
     path('developer-dashboard/', views.DeveloperDashboardView.as_view(),name="developer-dashboard"),
     path('logout/', LogoutView.as_view(next_page = "login"), name="logout"),
     path('developer-register/', views.DeveloperRegisterView.as_view(), name="developer-register"),
+    path('developer-list/', views.UserListView.as_view(), name="developer-list"),
 ]
