@@ -17,6 +17,7 @@ from project.models import Project,Task
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.views import View
 
 
 class ManagerRegisterView(CreateView):
@@ -92,8 +93,13 @@ class ManagerDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         #logic to get all projects    
         context = {}
+        total_projects = Project.objects.all().count()
         projects = Project.objects.all().values() #select * from employee
+        tasks = Task.objects.all().values()
         context["projects"] = projects
+        context["tasks"] = tasks
+        context["total_projects"] = total_projects
+        
         return render(request, 'user/manager_dashboard.html', context)
     
     template_name = 'user/manager_dashboard.html'
@@ -117,3 +123,9 @@ class DeveloperDashboardView(ListView):
         return render(request, 'user/developer_dashboard.html', context)
     
     template_name = 'user/developer_dashboard.html'
+    
+class UserListView(ListView):
+    template_name = 'user/user_list.html'
+    model = User
+    context_object_name = 'users'
+    

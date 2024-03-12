@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from .views import ProjectCreationView,ProjectListView,ProjectDetailView,ProjectUpdateView,ProjectDeleteView, ProjectTeamCreateView
 from .views import ProjectModuleCreateView, ProjectModuleListView, ProjectModuleUpdateView, ProjectModuleDeleteView
-from .views import ProjectTaskCreateView, ProjectTaskListView, ProjectTaskUpdateView, ProjectTaskDeleteView
+from .views import ProjectTaskCreateView, ProjectTaskListView, ProjectTaskUpdateView, ProjectTaskDeleteView, UpdateTaskStatus
 urlpatterns = [
     path("create/", ProjectCreationView.as_view(), name="create"),
     path('list/', ProjectListView.as_view(), name="list"),
@@ -17,6 +17,7 @@ urlpatterns = [
     path("create_task/", ProjectTaskCreateView.as_view(), name="create_task"),
     path("task_list/", ProjectTaskListView.as_view(), name="tasklist"),
     path("update_task/<int:pk>", ProjectTaskUpdateView.as_view(), name="update_task"),
-    path("delete_task/<int:pk>", ProjectTaskDeleteView.as_view(), name="deletetask")
+    path("delete_task/<int:pk>", ProjectTaskDeleteView.as_view(), name="deletetask"),
+    path('update-task-status/<int:pk>/',UpdateTaskStatus.as_view(), name="update-task-status"),
 
 ]
