@@ -94,8 +94,8 @@ class ManagerDashboardView(ListView):
         #logic to get all projects    
         context = {}
         total_projects = Project.objects.all().count()
-        projects = Project.objects.all().values() #select * from employee
-        tasks = Task.objects.all().values()
+        projects = Project.objects.all() #select * from employee
+        tasks = Task.objects.all()
         context["projects"] = projects
         context["tasks"] = tasks
         context["total_projects"] = total_projects
