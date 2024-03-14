@@ -6,12 +6,14 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <h2>Register</h2>
+      <center>
+      <div class="col-md-6" style="background-color:white; border-radius: 15px">
+        <h4>ADD PROJECT</h4>
         <form method="post">
           {% csrf_token %} {{ form|crispy }}
           <button type="submit" class="btn btn-primary">Register</button>
         </form>
+      </center>
       </div>
     </div>
 {% endblock content %}

@@ -3,14 +3,16 @@
 
 {% block content %}
 
-<div class="row">
+<div class="row mt-4">
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
           <h6>Project LIST</h6>
+          {% if request.user.is_manager %}
           <a href="{% url 'create' %}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
             <i class="fa-solid fa-square-plus"></i> Add Project
-        </a>
+          </a>
+          {% endif %}
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -22,7 +24,9 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Estimated Hours</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start Date</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date</th>
+                  {% if request.user.is_manager %}
                   <th class="text-center text-secondary opacity-7">ACTION</th>
+                  {% endif %}
                 </tr>
               </thead>
               <tbody>
@@ -47,6 +51,7 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{ project.endDate }}</span>
                   </td>
+                  {% if request.user.is_manager %}
                   <td class="align-middle">
                     <a href="{% url 'update_project' project.pk %}" class="btn btn-success" data-toggle="tooltip" data-original-title="Edit user">
                       <i class="fa-solid fa-pen-to-square"></i> EDIT
@@ -61,6 +66,7 @@
                       <i class="fa-solid fa-square-plus"></i> CREATE TEAM
                     </a>
                   </td>
+                  {% endif %}
                 </tr>
                 {% endfor %}
               </tbody>

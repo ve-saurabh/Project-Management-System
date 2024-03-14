@@ -21,8 +21,8 @@
                               <thead>
                                  <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Is Assigned</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Priority</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Task Priority</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update Status</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -31,9 +31,6 @@
                                  <tr>
                                     <td>
                                        <p class="text-center text-xs font-weight-bold mb-0">{{task.title}}</p>
-                                    </td>
-                                    <td class="text-center align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success">{{task.is_assigned}}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                        {% if task.priority == "High" %} 
@@ -44,6 +41,12 @@
                                        <span class="text-success text-xs font-weight-bold">{{task.priority}}</span>
                                        {% endif %}
                                     </td>
+                                    <td class="align-middle" >                     
+                                       <form action="{% url 'update-task-status' task.id %}" method="POST">
+                                         {% csrf_token %}
+                                         <center><input type="submit" value="Status" class="btn btn-danger" style="margin: 5px;padding: 5px;height: 30px;width: 55px;"></center>
+                                       </form>
+                                    </td> 
                                  </tr>
                                  {% endif %}
                                  {% endfor %}
@@ -70,8 +73,8 @@
                               <thead>
                                  <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Is Assigned</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Priority</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Task Priority</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update Status</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -81,9 +84,6 @@
                                     <td>
                                        <p class="text-center text-xs font-weight-bold mb-0">{{task.title}}</p>
                                     </td>
-                                    <td class="text-center align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success">{{task.is_assigned}}</span>
-                                    </td>
                                     <td class="align-middle text-center">
                                        {% if task.priority == "High" %}
                                        <span class="text-danger text-xs font-weight-bold">{{task.priority}}</span>
@@ -92,6 +92,12 @@
                                        {% elif task.priority == "Low" %}
                                        <span class="text-success text-xs font-weight-bold">{{task.priority}}</span>
                                        {% endif %}
+                                    </td>
+                                    <td class="align-middle" >                     
+                                       <form action="{% url 'update-task-status' task.id %}" method="POST">
+                                         {% csrf_token %}
+                                         <center><input type="submit" value="Status" class="btn btn-danger" style="margin: 5px;padding: 5px;height: 30px;width: 55px;"></center>
+                                       </form>
                                     </td>
                                  </tr>
                                  {% endif %}
@@ -119,8 +125,8 @@
                               <thead>
                                  <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Is Assigned</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Priority</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Report</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -130,11 +136,19 @@
                                     <td>
                                        <p class="text-center text-xs font-weight-bold mb-0">{{task.title}}</p>
                                     </td>
-                                    <td class="text-center align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success">{{task.is_assigned}}</span>
-                                    </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">{{task.priority}}</span>
+                                       {% if task.priority == "High" %}
+                                       <span class="text-danger text-xs font-weight-bold">{{task.priority}}</span>
+                                       {% elif task.priority == "Medium" %}
+                                       <span class="text-warning text-xs font-weight-bold">{{task.priority}}</span>
+                                       {% elif task.priority == "Low" %}
+                                       <span class="text-success text-xs font-weight-bold">{{task.priority}}</span>
+                                       {% endif %}
+                                    </td>
+                                    <td class="align-middle">
+                                       <a href="{% url 'report' task.id %}" class="btn btn-success" data-toggle="tooltip" data-original-title="Edit user">
+                                          Generate
+                                       </a>
                                     </td>
                                  </tr>
                                  {% endif %}

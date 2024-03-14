@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.forms import BaseModelForm
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView, TemplateView
 from .models import User
 from .forms import ManagerRegistrationForm, DeveloperRegistrationForm
 from django.http import HttpRequest, HttpResponse
@@ -13,11 +14,13 @@ from django.contrib.auth.views import LoginView
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from project.models import Project,Task
+from project.models import Project,Task, ProjectModule
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View
+from django.utils import timezone
+from datetime import datetime, timedelta
 
 
 class ManagerRegisterView(CreateView):
@@ -94,12 +97,17 @@ class ManagerDashboardView(ListView):
         #logic to get all projects    
         context = {}
         total_projects = Project.objects.all().count()
+        total_modules = ProjectModule.objects.all().count()
+        total_tasks = Task.objects.all().count()
+        total_users = User.objects.count()
         projects = Project.objects.all() #select * from employee
         tasks = Task.objects.all()
         context["projects"] = projects
         context["tasks"] = tasks
         context["total_projects"] = total_projects
-        
+        context["total_modules"] = total_modules
+        context["total_tasks"] = total_tasks
+        context["total_users"] = total_users
         return render(request, 'user/manager_dashboard.html', context)
     
     template_name = 'user/manager_dashboard.html'
@@ -128,4 +136,32 @@ class UserListView(ListView):
     template_name = 'user/user_list.html'
     model = User
     context_object_name = 'users'
+
+
+class UserProfileView(DetailView):
+    template_name = 'user/user_profile.html'
+    model = User
+    context_object_name = 'user_info'
     
+    
+class ReportView(TemplateView):
+    template_name = 'user/report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        completed_tasks = Task.objects.filter(status='Completed')
+
+        report_data = []
+        for task in completed_tasks:
+            estimated_hours = task.hours
+            completion_time = timedelta(hours=estimated_hours)
+            report_data.append({
+                'project_name': task.project,
+                'task_name': task.title,
+                'task_completion_date': timezone.now().date(),
+                'estimated_hours': estimated_hours,
+                'actual_hours': completion_time.total_seconds() / 3600
+            })
+
+        context['report_data'] = report_data
+        return context

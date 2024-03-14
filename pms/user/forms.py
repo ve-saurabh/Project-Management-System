@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
 from django.db import transaction
+from django.forms.models import ModelForm
 
 class ManagerRegistrationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -30,5 +31,7 @@ class DeveloperRegistrationForm(UserCreationForm):
         user.is_developer = True
         user.save()
         return user    
+
+        
             
     
