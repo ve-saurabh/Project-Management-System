@@ -38,15 +38,19 @@
           <span class="nav-link-text ms-1">Create Module</span>
         </a>
       </li>
+      {% endif %}
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+      </li>
       <li class="nav-item">
-        <a class="nav-link " href="./pages/rtl.html">
+        <a class="nav-link " href={% url 'user-profile' request.user.id %}>
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+            <i class="fa fa-user-circle text-danger text-sm opacity-10"></i>
           </div>
-          <span class="nav-link-text ms-1">RTL</span>
+          <span class="nav-link-text ms-1">Profile</span>
         </a>
       </li>
-      {% endif %}
+
     </ul>
   <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 348px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 250px;"></div></div></div>
   <div class="sidenav-footer mx-3 ">

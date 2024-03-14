@@ -115,4 +115,4 @@ class UpdateTaskStatus(View):
 
         task.save()
 
-        return redirect(reverse('/user/developer-dashboard/'))
+        return redirect(reverse('developer-dashboard'))

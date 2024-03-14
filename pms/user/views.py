@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.forms import BaseModelForm
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 from .models import User
 from .forms import ManagerRegistrationForm, DeveloperRegistrationForm
 from django.http import HttpRequest, HttpResponse
@@ -13,7 +14,7 @@ from django.contrib.auth.views import LoginView
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from project.models import Project,Task
+from project.models import Project,Task, ProjectModule
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -94,12 +95,17 @@ class ManagerDashboardView(ListView):
         #logic to get all projects    
         context = {}
         total_projects = Project.objects.all().count()
+        total_modules = ProjectModule.objects.all().count()
+        total_tasks = Task.objects.all().count()
+        total_users = User.objects.count()
         projects = Project.objects.all() #select * from employee
         tasks = Task.objects.all()
         context["projects"] = projects
         context["tasks"] = tasks
         context["total_projects"] = total_projects
-        
+        context["total_modules"] = total_modules
+        context["total_tasks"] = total_tasks
+        context["total_users"] = total_users
         return render(request, 'user/manager_dashboard.html', context)
     
     template_name = 'user/manager_dashboard.html'
@@ -128,4 +134,10 @@ class UserListView(ListView):
     template_name = 'user/user_list.html'
     model = User
     context_object_name = 'users'
+
+
+class UserProfileView(DetailView):
+    template_name = 'user/user_profile.html'
+    model = User
+    context_object_name = 'user_info'
     
