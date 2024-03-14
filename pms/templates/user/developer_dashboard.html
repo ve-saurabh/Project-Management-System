@@ -126,6 +126,7 @@
                                  <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Name</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Priority</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Report</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -143,6 +144,11 @@
                                        {% elif task.priority == "Low" %}
                                        <span class="text-success text-xs font-weight-bold">{{task.priority}}</span>
                                        {% endif %}
+                                    </td>
+                                    <td class="align-middle">
+                                       <a href="{% url 'report' task.id %}" class="btn btn-success" data-toggle="tooltip" data-original-title="Edit user">
+                                          Generate
+                                       </a>
                                     </td>
                                  </tr>
                                  {% endif %}

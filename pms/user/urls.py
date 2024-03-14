@@ -12,4 +12,5 @@ urlpatterns = [
     path('developer-register/', views.DeveloperRegisterView.as_view(), name="developer-register"),
     path('developer-list/', views.UserListView.as_view(), name="developer-list"),
     path('user-profile/<int:pk>/', views.UserProfileView.as_view(), name="user-profile"),
+    path('report/<int:pk>/', views.ReportView.as_view(), name="report"),
 ]

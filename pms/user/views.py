@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.forms import BaseModelForm
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 from .models import User
 from .forms import ManagerRegistrationForm, DeveloperRegistrationForm
 from django.http import HttpRequest, HttpResponse
@@ -19,6 +19,8 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View
+from django.utils import timezone
+from datetime import datetime, timedelta
 
 
 class ManagerRegisterView(CreateView):
@@ -141,3 +143,25 @@ class UserProfileView(DetailView):
     model = User
     context_object_name = 'user_info'
     
+    
+class ReportView(TemplateView):
+    template_name = 'user/report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        completed_tasks = Task.objects.filter(status='Completed')
+
+        report_data = []
+        for task in completed_tasks:
+            estimated_hours = task.hours
+            completion_time = timedelta(hours=estimated_hours)
+            report_data.append({
+                'project_name': task.project,
+                'task_name': task.title,
+                'task_completion_date': timezone.now().date(),
+                'estimated_hours': estimated_hours,
+                'actual_hours': completion_time.total_seconds() / 3600
+            })
+
+        context['report_data'] = report_data
+        return context
