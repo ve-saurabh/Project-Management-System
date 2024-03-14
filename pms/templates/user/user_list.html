@@ -1,0 +1,57 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block content %}
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>User List</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User Name</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Age</th>
+                                <th class="text-center text-secondary text-xs opacity-7">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for u in users %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">{{ u.username }}</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-center text-xs font-weight-bold mb-0">{{ u.email }}</p>
+                                </td>
+                                <td class="text-center align-middle text-center text-sm">
+                                    <span class="badge badge-sm bg-gradient-success">{{ u.age}}</span>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">{{ task.priority }}</span>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">{{ task.status }}</span>
+                                </td>
+                                {% comment %}
+                                <td class="align-middle text-center">
+                                    <a href="{% url 'update_task' task.pk %}" class="btn btn-success" data-toggle="tooltip" data-original-title="Edit module"> <i class="fa-solid fa-pen-to-square"></i> EDIT </a>
+                                    <a href="{% url 'deletetask' task.pk %}" class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete module"> <i class="fa-solid fa-trash"></i> DELETE </a> {% endcomment %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

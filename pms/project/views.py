@@ -5,6 +5,10 @@ from .models import Project, ProjectTeam, ProjectModule, Task
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.shortcuts import get_object_or_404
+from django.views import View
+from django.shortcuts import redirect
+from django.urls import reverse
 
 # Create your views here.
 class ProjectCreationView(CreateView):
@@ -41,6 +45,13 @@ class ProjectTeamCreateView(CreateView):
     model = ProjectTeam
     form_class = ProjectTeamCreationForm
     success_url = "/project/list/"
+    
+    # def get_initial(self):
+    #     initial = super().get_initial()
+    #     project_id = self.kwargs.get('project_id')
+    #     project = get_object_or_404(Project, pk=project_id)
+    #     initial['project'] = project
+    #     return initial
 
 
 # Project Module view
@@ -89,3 +100,19 @@ class ProjectTaskDeleteView(DeleteView):
     model = Task
     template_name = 'project/delete_task.html'
     success_url = '/project/task_list/'
+
+
+class UpdateTaskStatus(View):
+    def post(self,request,pk):
+        task = Task.objects.get(id=pk)
+
+        if task.status == "Not Started":
+            task.status = "In Progress"
+        elif task.status == "In Progress":
+            task.status = "Completed"
+        else:
+            task.status = "Not Started"
+
+        task.save()
+
+        return redirect(reverse('/user/developer-dashboard/'))

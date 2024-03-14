@@ -21,20 +21,21 @@
           <span class="nav-link-text ms-1">Project List</span>
         </a>
       </li>
+      {% if request.user.is_manager %}
       <li class="nav-item">
-        <a class="nav-link " href="./pages/billing.html">
+        <a class="nav-link " href={% url "create_task" %}>
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
           </div>
-          <span class="nav-link-text ms-1">Billing</span>
+          <span class="nav-link-text ms-1">Create Task</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="./pages/virtual-reality.html">
+        <a class="nav-link " href={% url "project_module"  %}>
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-app text-info text-sm opacity-10"></i>
           </div>
-          <span class="nav-link-text ms-1">Virtual Reality</span>
+          <span class="nav-link-text ms-1">Create Module</span>
         </a>
       </li>
       <li class="nav-item">
@@ -45,6 +46,7 @@
           <span class="nav-link-text ms-1">RTL</span>
         </a>
       </li>
+      {% endif %}
     </ul>
   <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 348px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 250px;"></div></div></div>
   <div class="sidenav-footer mx-3 ">

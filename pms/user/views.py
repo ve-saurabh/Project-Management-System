@@ -13,9 +13,13 @@ from django.contrib.auth.views import LoginView
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from project.models import Project
+from project.models import Project,Task
 from django.contrib import messages
-# Create your views here.
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views import View
+
+
 class ManagerRegisterView(CreateView):
     template_name = 'user/manage_register.html'
     model = User
@@ -37,8 +41,18 @@ class DeveloperRegisterView(CreateView):
     template_name = 'user/developer_register.html'
     model = User
     form_class = DeveloperRegistrationForm
-    success_url = '/login/'
+    success_url = '/user/login/'
 
+    def form_valid(self, form):
+        email = form.cleaned_data.get('email')
+        print("email-->", email)
+        if sendMail(email):
+            print("Mail sent successfully")
+            return super().form_valid(form)
+        else:
+            return super().form_valid(form)
+        
+        
 def sendMail(to):
     subject = 'Welcome to pms'
     message = 'Hope you are enjoying django tutorials'
@@ -63,23 +77,55 @@ class UserLoginView(LoginView):
                 return '/user/developer-dashboard/'
         else:
             messages.error(self.request, 'Invalid username or password. Please register first.')
-    
+
+
+# RESTRICTING DEVELOPER FROM ACCESSING MANAGER DASHBOARD
+def manager_required(view_func):
+    def wrapper(request, *args, **kwargs):
+        if not request.user.is_manager: 
+            return redirect(reverse('developer-dashboard')) # Redirect to an access denied page or another appropriate page
+        return view_func(request, *args, **kwargs)
+    return wrapper    
+
+@method_decorator(manager_required, name='dispatch')
 @method_decorator(login_required(login_url="/user/login/"), name='dispatch')
 class ManagerDashboardView(ListView):
-
     def get(self, request, *args, **kwargs):
         #logic to get all projects    
         context = {}
-        projects = Project.objects.all().values() #select * from employee
+        total_projects = Project.objects.all().count()
+        projects = Project.objects.all() #select * from employee
+        tasks = Task.objects.all()
         context["projects"] = projects
+        context["tasks"] = tasks
+        context["total_projects"] = total_projects
+        
         return render(request, 'user/manager_dashboard.html', context)
     
     template_name = 'user/manager_dashboard.html'
+    
+# RESTRICTING MANAGER FROM ACCESSING DEVELOPER DASHBOARD
+def developer_required(view_func):
+    def wrapper(request, *args, **kwargs):
+        if not request.user.is_developer:
+            return redirect(reverse('manager-dashboard')) # Redirect to an access denied page or another appropriate page
+        return view_func(request, *args, **kwargs)
+    return wrapper
 
+@method_decorator(developer_required, name='dispatch')
+@method_decorator(login_required(login_url="/user/login/"), name='dispatch')
 class DeveloperDashboardView(ListView):
-
     def get(self, request, *args, **kwargs):
         #logic to get all projects
-        return render(request, 'user/developer_dashboard.html')
+        context = {}
+        tasks = Task.objects.all().values() #select * from employee
+        context["tasks"] = tasks
+        return render(request, 'user/developer_dashboard.html', context)
     
     template_name = 'user/developer_dashboard.html'
+    
+class UserListView(ListView):
+    template_name = 'user/user_list.html'
+    model = User
+    context_object_name = 'users'
+    

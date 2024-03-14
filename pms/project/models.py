@@ -9,7 +9,7 @@ techChoices  = (
 )
 class Project(models.Model):
     name = models.CharField(max_length = 100)
-    description = models.TextField()
+    description = models.CharField(max_length = 500)
     technology = models.CharField(max_length = 100, choices = techChoices)
     estimated_hours = models.PositiveBigIntegerField()
     startDate = models.DateField()

@@ -38,7 +38,13 @@
                     <span class="badge badge-sm bg-gradient-success">{{ task.title }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ task.priority }}</span>
+                    {% if task.priority == "High" %}
+                    <span class="text-secondary text-xs font-weight-bold text-danger">{{ task.priority }}</span>                    
+                    {% elif task.priority == "Medium" %}
+                    <span class="text-secondary text-xs font-weight-bold text-warning">{{ task.priority }}</span>
+                    {% elif task.priority == "Low" %}
+                    <span class="text-secondary text-xs font-weight-bold text-success">{{ task.priority }}</span>
+                    {% endif %}
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{ task.status }}</span>
@@ -49,6 +55,9 @@
                     </a>
                     <a href="{% url 'deletetask' task.pk %}" class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete module">
                       <i class="fa-solid fa-trash"></i> DELETE
+                    </a>
+                    <a href="#" class="btn btn-info" data-toggle="tooltip" data-original-title="Assign module">
+                      <i class="fa-solid "></i> ASSIGN
                     </a>
                   </td>
                 </tr>

@@ -8,8 +8,10 @@
       <div class="card mb-4">
         <div class="card-header pb-0">
           <h6>Project LIST</h6>
-          {% comment %} <a href = "{% url 'create' %}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal"><i class="fa-solid fa-square-plus"></i> Add Project</a>
-        </div> {% endcomment %}
+          <a href="{% url 'create' %}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+            <i class="fa-solid fa-square-plus"></i> Add Project
+        </a>
+        </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">
@@ -17,7 +19,7 @@
                 <tr>
                   <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project Name</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Technology</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Estimeted Hours</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Estimated Hours</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start Date</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date</th>
                   <th class="text-center text-secondary opacity-7">ACTION</th>
@@ -25,49 +27,42 @@
               </thead>
               <tbody>
                 {% for project in projects %}
-
                 <tr>
                   <td>
                     <div class="d-flex px-2 py-1">
-                      {% comment %} <div>
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
-                      </div> {% endcomment %}
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{project.name}}</h6>
-                        {% comment %} <p class="text-xs text-secondary mb-0">john@creative-tim.com</p> {% endcomment %}
+                        <h6 class="mb-0 text-sm">{{ project.name }}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <p class="text-center text-xs font-weight-bold mb-0">{{project.technology}}</p>
+                    <p class="text-center text-xs font-weight-bold mb-0">{{ project.technology }}</p>
                   </td>
                   <td class="text-center align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-success">{{project.estimated_hours}}</span>
+                    <span class="badge badge-sm bg-gradient-success">{{ project.estimated_hours }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{project.startDate}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{ project.startDate }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{project.endDate}}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{ project.endDate }}</span>
                   </td>
                   <td class="align-middle">
-                    <a href={% url "update_project" project.pk %} class="btn btn-success" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="{% url 'update_project' project.pk %}" class="btn btn-success" data-toggle="tooltip" data-original-title="Edit user">
                       <i class="fa-solid fa-pen-to-square"></i> EDIT
                     </a>
-                    <a href={% url "project_detail" project.pk %} class="btn btn-info" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="{% url 'project_detail' project.pk %}" class="btn btn-info" data-toggle="tooltip" data-original-title="Edit user">
                       <i class="fa-solid fa-eye"></i> VIEW
-                      </a>
-                      <a href={% url "delete_project" project.pk %} class="btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
-                        <i class="fa-solid fa-trash"></i> DELETE
-                      </a>
-                      <a href={% url "project_team_create" %} class="btn btn-primary" data-toggle="tooltip" data-original-title="Edit user">
-                        <i class="fa-solid fa-square-plus"></i> CREATE TEAM
-                      </a>
+                    </a>
+                    <button class="btn btn-danger delete-btn" data-url="{% url 'delete_project' project.pk %}" data-name="{{ project.name }}">
+                      <i class="fa-solid fa-trash"></i> DELETE
+                    </button>
+                    <a href="{% url 'project_team_create' %}" class="btn btn-primary" data-toggle="tooltip" data-original-title="Edit user">
+                      <i class="fa-solid fa-square-plus"></i> CREATE TEAM
+                    </a>
                   </td>
                 </tr>
                 {% endfor %}
-                
-                
               </tbody>
             </table>
           </div>
@@ -75,6 +70,33 @@
       </div>
     </div>
   </div>
-  
-{% endblock content %}
 
+<script>
+  $(document).ready(function() {
+    $('.delete-btn').click(function() {
+      var url = $(this).data('url');
+      var projectName = $(this).data('name');
+      if (confirm("Are you sure you want to delete " + projectName + "?")) {
+        $.ajax({
+          url: url,
+          type: 'POST',
+          data: {
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+            // Add any additional data you need to send to the backend for deletion
+          },
+          success: function(response) {
+            // Handle success, like removing the row from the table
+            // For example:
+            // $(this).closest('tr').remove();
+            location.reload(); // Reload the page to reflect changes
+          },
+          error: function(xhr, errmsg, err) {
+            // Handle error
+          }
+        });
+      }
+    });
+  });
+</script>
+
+{% endblock content %}

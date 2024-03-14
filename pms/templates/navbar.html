@@ -5,7 +5,11 @@
           {% comment %} <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li> {% endcomment %}
           {% comment %} <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li> {% endcomment %}
         </ol>
-        {% comment %} <h4 class="font-weight-bolder text-white mb-0">Manager Dashboard</h4> {% endcomment %}
+        {% if request.user.is_manager %}
+        <h4 class="font-weight-bolder text-white mb-0">Manager Dashboard</h4>
+        {% else %}
+        <h4 class="font-weight-bolder text-white mb-0">Developer Dashboard</h4>
+        {% endif %}
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
