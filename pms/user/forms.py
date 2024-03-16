@@ -31,6 +31,11 @@ class DeveloperRegistrationForm(UserCreationForm):
         user.is_developer = True
         user.save()
         return user    
+    
+class UserProfileUpdateForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name','email', 'address', 'city', 'country', 'pincode']
 
         
             

@@ -13,4 +13,5 @@ urlpatterns = [
     path('developer-list/', views.UserListView.as_view(), name="developer-list"),
     path('user-profile/<int:pk>/', views.UserProfileView.as_view(), name="user-profile"),
     path('report/<int:pk>/', views.ReportView.as_view(), name="report"),
+    path('user-profile-update/<int:pk>/', views.UserProfileUpdateView.as_view(), name="user-profile-update"),
 ]
