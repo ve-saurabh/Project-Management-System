@@ -3,9 +3,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.forms import BaseModelForm
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView, TemplateView,UpdateView
 from .models import User
-from .forms import ManagerRegistrationForm, DeveloperRegistrationForm
+from .forms import ManagerRegistrationForm, DeveloperRegistrationForm,UserProfileUpdateForm
 from django.http import HttpRequest, HttpResponse
 #import settings.py
 from django.conf import settings
@@ -142,6 +142,14 @@ class UserProfileView(DetailView):
     template_name = 'user/user_profile.html'
     model = User
     context_object_name = 'user_info'
+    
+class UserProfileUpdateView(UpdateView):
+    template_name = 'user/user_profile_update.html'
+    model = User
+    form_class = UserProfileUpdateForm
+    context_object_name = 'user_info'
+    def get_success_url(self):
+        return reverse('user-profile', kwargs={'pk': self.object.pk})
     
     
 class ReportView(TemplateView):

@@ -11,7 +11,7 @@ class ProjectCreationForm(forms.ModelForm):
 class ProjectTeamCreationForm(forms.ModelForm):
     class Meta:
         model = ProjectTeam
-        fields ='__all__'
+        fields = ['project', 'user']
 
 class ProjectModuleCreationForm(forms.ModelForm):
     class Meta:
