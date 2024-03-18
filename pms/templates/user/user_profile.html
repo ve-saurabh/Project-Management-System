@@ -9,8 +9,15 @@
       <div class="row gx-4">
         <div class="col-auto">
           <div class="avatar avatar-xl position-relative">
-            <img src="../assets/img/team-1.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
-          </div>
+            {% if request.user.profile_image %}
+                <img src="{{ request.user.profile_image.url }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+            {% else %}
+                <label for="profile-upload" class="profile-upload">
+                    <i class="ni ni-image"></i>
+                </label>
+                <input type="file" id="profile-upload" style="display: none;">
+            {% endif %}
+        </div>
         </div>
         <div class="col-auto my-auto">
           <div class="h-100">
