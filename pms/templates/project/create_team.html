@@ -2,20 +2,16 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block navbar %}
-
 {% endblock navbar %}
 {% block nav %}
-
 {% endblock nav %}
-         
 {% block content %}
-    <center >
-      <div class="mt-100">
-          <form method="post" style="border: solid;width: 30rem; background-color: white;margin: 250px;padding: 30px;justify-content: left;">
-            {% csrf_token %} {{form.as_p}}
-            <input type="submit" value="Submit" class="btn btn-dark" />
-          </form>
-      </div>
-  </center>
+<center >
+   <div class="mt-100">
+      <form method="post" style="border: solid;width: 30rem; background-color: white;margin: 250px;padding: 30px;justify-content: left;">
+         {% csrf_token %} {{form.as_p}}
+         <input type="submit" value="Submit" class="btn btn-dark" />
+      </form>
+   </div>
+</center>
 {% endblock content %}
-

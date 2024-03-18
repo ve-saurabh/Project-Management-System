@@ -3,9 +3,9 @@
 {% load crispy_forms_tags %} 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row mt-4">
         <center>
-            <div class="col-md-6">
+            <div class="col-md-6" style="background-color:white; border-radius: 15px">
                 <h2>Update Profile</h2>
                     <form method="post">
                         {% csrf_token %}
@@ -15,4 +15,5 @@
              </div>
         </center>
     </div>
+</div>
 {% endblock content %}

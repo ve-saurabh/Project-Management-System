@@ -6,7 +6,7 @@
     <div class="row mt-4">
         <center>
             <div class="col-md-6" style="background-color:white; border-radius: 15px">
-                <h2>Create Task</h2>
+                <h3>Create Task</h3>
                     <form method="post">
                         {% csrf_token %}
                         {{ form | crispy  }}
@@ -15,4 +15,5 @@
              </div>
         </center>
     </div>
+</div>
 {% endblock content %}

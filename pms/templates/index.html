@@ -1,1 +1,67 @@
-<h1>Hello This is index file</h1>
+{% extends "./base.html" %}
+{% load static %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block nav %}
+{% endblock nav %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-8">
+        <div class="col-md-40">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Welcome</h1>
+                    <h2 class="card-title text-center">to</h2>
+                    <h3 class="card-title text-center">Project Management System</h3>
+                    <p class="card-text text-center">This is a project management system. It is used to manage projects.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="text-center">
+        <a href="{% url 'manager-register' %}" class="btn btn-primary mr-2">SIGN UP</a>
+        <a href="{% url 'login' %}" class="btn btn-primary">SIGN IN</a>
+    </div>
+</div>
+<footer class="footer mt-5" style="background-color: #333; color: white;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <p>Email: <a href="mailto:vermasaurabh0204@gmail.com">vermasaurabh0204@gmail.com</a></p>
+                <p>Phone: +91 1234567890</p>
+                <p>Address: 123 Main Street, Ahmedabad, India</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>&copy; 2024 Your Company. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock content %}
+
