@@ -22,4 +22,9 @@ class ProjectTaskCreationForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = '__all__'
+        
 
+class UserTaskCreationForm(forms.ModelForm):
+    class Meta:
+        model = UserTask
+        fields = '__all__'

@@ -1,7 +1,7 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
-from .forms import ProjectCreationForm, ProjectTeamCreationForm, ProjectModuleCreationForm, ProjectTaskCreationForm
-from .models import Project, ProjectTeam, ProjectModule, Task
+from .forms import ProjectCreationForm, ProjectTeamCreationForm, ProjectModuleCreationForm, ProjectTaskCreationForm, UserTaskCreationForm
+from .models import Project, ProjectTeam, ProjectModule, Task, UserTask
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -46,12 +46,12 @@ class ProjectTeamCreateView(CreateView):
     form_class = ProjectTeamCreationForm
     success_url = "/project/list/"
     
-    # def get_initial(self):
-    #     initial = super().get_initial()
-    #     project_id = self.kwargs.get('project_id')
-    #     project = get_object_or_404(Project, pk=project_id)
-    #     initial['project'] = project
-    #     return initial
+    def get_initial(self):
+        initial = super().get_initial()
+        project_id = self.kwargs.get('project_id')
+        project = get_object_or_404(Project, pk=project_id)
+        initial['project'] = project
+        return initial
 
 
 # Project Module view
@@ -100,7 +100,18 @@ class ProjectTaskDeleteView(DeleteView):
     model = Task
     template_name = 'project/delete_task.html'
     success_url = '/project/task_list/'
-
+    
+class ProjectTaskAssignView(CreateView):
+    model = UserTask
+    form_class = UserTaskCreationForm
+    template_name = 'project/assign_task.html'
+    success_url = '/project/task_list/'
+    def get_initial(self):
+        initial = super().get_initial()
+        task_id = self.kwargs.get('pk')
+        task = get_object_or_404(Task, pk=task_id)
+        initial['task'] = task
+        return initial
 
 class UpdateTaskStatus(View):
     def post(self,request,pk):

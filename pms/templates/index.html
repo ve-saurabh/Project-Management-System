@@ -1,67 +1,255 @@
 {% extends "./base.html" %}
 {% load static %}
-
 {% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <!-- Add other navbar items as needed -->
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+               <a class="nav-link" href="{% url 'login' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <!-- Add other navbar items as needed -->
+         </ul>
+         <!-- Move Sign In and Sign Up buttons here -->
+         <div class="d-flex">
+            <a href="{% url 'login' %}" class="btn btn-primary mx-2">Sign In</a>
+            <a href="{% url 'manager-register' %}" class="btn btn-outline-primary">Sign Up</a>
+         </div>
+      </div>
+   </div>
+</nav>
 {% endblock navbar %}
-
 {% block nav %}
+<!-- Additional navigation content goes here -->
 {% endblock nav %}
-
 {% block content %}
 <div class="container">
-    <div class="row mt-8">
-        <div class="col-md-40">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title text-center">Welcome</h1>
-                    <h2 class="card-title text-center">to</h2>
-                    <h3 class="card-title text-center">Project Management System</h3>
-                    <p class="card-text text-center">This is a project management system. It is used to manage projects.</p>
-                </div>
+   <!-- Hero Section -->
+   <!-- Hero Section -->
+   <section class="hero-section">
+      <div class="container">
+         <div class="row mt-5 justify-content-center">
+            <!-- Center the content -->
+            <div class="col-md-8">
+               <div class="card text-center">
+                  <!-- Wrap content in a card -->
+                  <div class="card-body">
+                     <h1 class="card-title">Welcome to Project Management System</h1>
+                     <p class="lead">Your Ultimate Project Management Solution</p>
+                     <p>This system helps you streamline your project management process, collaborate effectively, and achieve project success.</p>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row mt-5">
-    <div class="text-center">
-        <a href="{% url 'manager-register' %}" class="btn btn-primary mr-2">SIGN UP</a>
-        <a href="{% url 'login' %}" class="btn btn-primary">SIGN IN</a>
-    </div>
-</div>
-<footer class="footer mt-5" style="background-color: #333; color: white;">
-    <div class="container-fluid">
-        <div class="row">
+         </div>
+      </div>
+   </section>
+   <!-- Dark bold black lines -->
+   <hr style="border-top: 3px solid #000; width: 100%;">
+   <!-- Features Section -->
+   <section id="features" class="features-section my-5" style="background-color: #f8f9fa;">
+      <div class="container">
+         <h2 class="text-center mb-4">Key Features</h2>
+         <div class="row">
             <div class="col-md-4">
-                <h5>Contact Us</h5>
-                <p>Email: <a href="mailto:vermasaurabh0204@gmail.com">vermasaurabh0204@gmail.com</a></p>
-                <p>Phone: +91 1234567890</p>
-                <p>Address: 123 Main Street, Ahmedabad, India</p>
-            </div>
-            <div class="col-md-4">
-                <h5>Quick Links</h5>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
+               <div class="feature-item text-center">
+                  <i class="fas fa-tasks fa-3x mb-3"></i>
+                  <h3>Task Management</h3>
+                  <p>Effortlessly manage tasks, assign responsibilities, and track progress.</p>
+               </div>
             </div>
             <div class="col-md-4">
-                <h5>Follow Us</h5>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                </ul>
+               <div class="feature-item text-center">
+                  <i class="fas fa-chart-line fa-3x mb-3"></i>
+                  <h3>Performance Analytics</h3>
+                  <p>Gather insights with comprehensive analytics and reporting tools.</p>
+               </div>
             </div>
-        </div>
-        <hr>
-        <div class="row">
+            <div class="col-md-4">
+               <div class="feature-item text-center">
+                  <i class="fas fa-calendar-alt fa-3x mb-3"></i>
+                  <h3>Calendar Integration</h3>
+                  <p>Sync deadlines and milestones with your preferred calendar application.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!-- Dark bold black lines -->
+   <hr style="border-top: 3px solid #000; width: 100%;">
+   <!-- Testimonials Section -->
+   <section class="testimonials-section my-5">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <h2 class="text-center mb-4">What Our Clients Say</h2>
+               <div id="carouselTestimonials" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                     <div class="carousel-item active">
+                        <div class="testimonial-item text-center">
+                           <p class="testimonial-text">"The Project Management System has revolutionized the way we manage projects. It's intuitive, powerful, and highly customizable."</p>
+                           <h5 class="testimonial-author">John Doe, CEO</h5>
+                        </div>
+                     </div>
+                     <div class="carousel-item">
+                        <div class="testimonial-item text-center">
+                           <p class="testimonial-text">"Thanks to the Project Management System, we've improved collaboration among team members and achieved better project outcomes."</p>
+                           <h5 class="testimonial-author">Jane Smith, Project Manager</h5>
+                        </div>
+                     </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonials" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonials" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!-- About Section -->
+   <section id="about" class="about-section my-5" style="background-color: #e9ecef;">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <h2 class="text-center mb-4">About Us</h2>
+               <p>We are a dedicated team committed to revolutionizing project management. Our mission is to provide innovative solutions that streamline project workflows and empower teams to achieve their goals efficiently.</p>
+               <p>Our organization was founded in 20XX with the vision of simplifying project management for businesses of all sizes. Since then, we have grown into a diverse team of professionals with expertise in software development, project management, and user experience design.</p>
+               <p>At the core of our values is a commitment to excellence, collaboration, and continuous improvement. We believe in fostering a culture of creativity and inclusivity, where every team member's contribution is valued and respected.</p>
+               <p>In the future, we aim to expand our product offerings and reach new markets while staying true to our founding principles. We are constantly exploring new technologies and methodologies to ensure that our solutions remain at the forefront of the industry.</p>
+               <p>If you're interested in learning more about our organization or partnering with us, we'd love to hear from you. Feel free to contact us via email at info@example.com or give us a call at +123456789.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% comment %} 
+   <!-- Technologies Section -->
+   <section class="technologies-section py-5">
+      <div class="container">
+         <div class="row justify-content-center">
+            <div class="col-md-6">
+               <h2 class="text-center mb-4">Technologies We Have Used</h2>
+               <div class="technologies-list">
+                  <ul class="list-unstyled text-center">
+                     <li><img src="{% static 'technologies/django-logo.png.png' %}" alt="Django Logo" width="100"></li>
+                     <li><img src="{% static 'technologies/html-logo.png.png' %}" alt="HTML Logo" width="100"></li>
+                     <li><img src="{% static 'technologies/css-logo.png.png' %}" alt="CSS Logo" width="100"></li>
+                     <li><img src="{% static 'technologies/python-logo.png.png' %}" alt="Python Logo" width="100"></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endcomment %}
+   <!-- Contact Section -->
+   <hr style="border-top: 3px solid #000; width: 100%;">
+   <section id="contact" class="contact-section py-5">
+      <div class="container">
+         <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+               <!-- Heading with Black Line Separator -->
+               <h2 class="section-title mb-4">Contact Us</h2>
+            </div>
+         </div>
+         <div class="row justify-content-center">
+            <!-- Contact Information -->
+            <div class="col-md-4 mb-4">
+               <div class="contact-info text-center">
+                  <h5 class="mb-3">Contact Information</h5>
+                  <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, City, Country</p>
+                  <p><i class="fas fa-envelope"></i> info@example.com</p>
+                  <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+               </div>
+            </div>
+            <!-- Contact Form -->
+            <div class="col-md-4 mb-4">
+               <div class="contact-form text-center">
+                  <h5 class="mb-3">Have a Question?</h5>
+                  <p>If you have any questions or inquiries, feel free to send us an email:</p>
+                  <p class="email-address">info@example.com</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <hr style="border-top: 3px solid #000; width: 100%;">
+   <!-- Footer Section -->
+   <footer class="footer-section">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-4">
+               <h4>Contact Us</h4>
+               <p>123 Main Street, City, Country</p>
+               <p>Email: info@example.com</p>
+               <p>Phone: +1 (123) 456-7890</p>
+            </div>
+            <div class="col-md-4">
+               <h4>Follow Us</h4>
+               <ul class="social-icons">
+                  <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+               </ul>
+            </div>
+            <div class="col-md-4">
+               <h4>Quick Links</h4>
+               <ul class="quick-links">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">Contact</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="row">
             <div class="col-md-12 text-center">
-                <p>&copy; 2024 Your Company. All rights reserved.</p>
+               <p>&copy; 2024 Project Management System. All rights reserved.</p>
             </div>
-        </div>
-    </div>
-</footer>
+         </div>
+      </div>
+   </footer>
+</div>
 {% endblock content %}
-
+<script>
+   // Smooth scrolling functionality
+   $(document).ready(function () {
+       // Add smooth scrolling to all links
+       $("a").on('click', function (event) {
+           // Make sure this.hash has a value before overriding default behavior
+           if (this.hash !== "") {
+               // Prevent default anchor click behavior
+               event.preventDefault();
+               // Store hash
+               var hash = this.hash;
+               // Using jQuery's animate() method to add smooth page scroll
+               // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+               $('html, body').animate({
+                   scrollTop: $(hash).offset().top
+               }, 800, function () {
+                   // Add hash (#) to URL when done scrolling (default click behavior)
+                   window.location.hash = hash;
+               });
+           } // End if
+       });
+   });
+</script>
