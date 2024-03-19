@@ -14,9 +14,9 @@
         <div class="card-body">
           <h5 class="card-title">{{ data.task_name }}</h5>
           <p class="card-text"><strong>Project Name:</strong> {{ data.project_name }}</p>
-          <p class="card-text"><strong>Completion Date:</strong> {{ data.task_completion_date }}</p>
-          <p class="card-text"><strong>Estimated Hours:</strong> {{ data.estimated_hours }}</p>
-          <p class="card-text"><strong>Actual Hours:</strong> {{ data.actual_hours }}</p>
+          <p class="card-text"><strong>Status:</strong> {{ data.status }}</p>
+          <p class="card-text"><strong>Completion Date:</strong> {{ data.completion_date }}</p>
+          {% comment %} <p class="card-text"><strong>Actual Hours:</strong> {{ data.actual_hours }}</p> {% endcomment %}
         </div>
       </div>
       {% endfor %}

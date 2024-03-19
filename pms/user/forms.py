@@ -22,7 +22,7 @@ class ManagerRegistrationForm(UserCreationForm):
 class DeveloperRegistrationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ['username', 'email', 'age', 'salary','password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'email', 'age', 'salary','password1', 'password2']
         
     
     @transaction.atomic
