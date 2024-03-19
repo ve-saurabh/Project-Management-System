@@ -72,7 +72,7 @@
   </div>
 </div>
   <div class="sidenav-footer mx-3 ">
-    <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a>
+    {% comment %} <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a> {% endcomment %}
     <form method="post" action="{% url 'logout' %}">
       {% csrf_token %}
       <button class="btn btn-primary btn-sm mb-0 w-100" type="submit">Logout</button>

@@ -60,7 +60,7 @@
                            <button class="btn btn-danger delete-btn" data-url="{% url 'delete_project' project.pk %}" data-name="{{ project.name }}">
                            <i class="fa-solid fa-trash"></i> DELETE
                            </button>
-                           <a href="{% url 'project_team_create' %}" class="btn btn-primary" data-toggle="tooltip" data-original-title="Edit user">
+                           <a href="{% url 'project_team_create' project.pk %}" class="btn btn-primary" data-toggle="tooltip" data-original-title="Edit user">
                            <i class="fa-solid fa-square-plus"></i> CREATE TEAM
                            </a>
                         </td>

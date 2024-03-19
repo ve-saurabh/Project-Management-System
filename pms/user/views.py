@@ -18,9 +18,8 @@ from project.models import Project,Task, ProjectModule
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views import View
 from django.utils import timezone
-from datetime import datetime, timedelta
+from django.shortcuts import get_object_or_404
 
 
 class ManagerRegisterView(CreateView):
@@ -44,21 +43,23 @@ class DeveloperRegisterView(CreateView):
     template_name = 'user/developer_register.html'
     model = User
     form_class = DeveloperRegistrationForm
-    success_url = '/user/login/'
+    success_url = '/user/manager-dashboard/'
 
     def form_valid(self, form):
         email = form.cleaned_data.get('email')
+        name = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
         print("email-->", email)
-        if sendMail(email):
+        if sendMail(email, name, password):
             print("Mail sent successfully")
+            print("password-->", password)
             return super().form_valid(form)
         else:
             return super().form_valid(form)
         
-        
-def sendMail(to):
+def sendMail(to, username, password):
     subject = 'Welcome to pms'
-    message = 'Hope you are enjoying django tutorials'
+    message = f"your {username} and password is {password}"
     # recepientList = ["vermasaurabh0204@gmail.com"]
     recepientList = [to]
     EMAIL_FROM = settings.EMAIL_HOST_USER
@@ -126,7 +127,7 @@ class DeveloperDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         #logic to get all projects
         context = {}
-        tasks = Task.objects.all().values() #select * from employee
+        tasks = Task.objects.all() #select * from employee
         context["tasks"] = tasks
         return render(request, 'user/developer_dashboard.html', context)
     
@@ -157,19 +158,13 @@ class ReportView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        completed_tasks = Task.objects.filter(status='Completed')
-
-        report_data = []
-        for task in completed_tasks:
-            estimated_hours = task.hours
-            completion_time = timedelta(hours=estimated_hours)
-            report_data.append({
-                'project_name': task.project,
-                'task_name': task.title,
-                'task_completion_date': timezone.now().date(),
-                'estimated_hours': estimated_hours,
-                'actual_hours': completion_time.total_seconds() / 3600
-            })
-
+        task_id = kwargs.get('pk')
+        task = get_object_or_404(Task, pk=task_id, status='Completed')
+        report_data = [{
+            'project_name': task.project,
+            'task_name': task.title,
+            'status': task.status,
+            'completion_date': timezone.now().date(),
+        }]
         context['report_data'] = report_data
         return context
