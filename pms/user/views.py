@@ -97,6 +97,9 @@ class ManagerDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         #logic to get all projects    
         context = {}
+        not_started = Task.objects.filter(status='Not Started').count()
+        in_progress = Task.objects.filter(status='In Progress').count()
+        completed = Task.objects.filter(status='Completed').count()
         total_projects = Project.objects.all().count()
         total_modules = ProjectModule.objects.all().count()
         total_tasks = Task.objects.all().count()
@@ -109,6 +112,12 @@ class ManagerDashboardView(ListView):
         context["total_modules"] = total_modules
         context["total_tasks"] = total_tasks
         context["total_users"] = total_users
+        context["not_started"] = not_started
+        context["in_progress"] = in_progress
+        context["completed"] = completed
+        print(not_started)
+        print(in_progress)
+        print(completed)
         return render(request, 'user/manager_dashboard.html', context)
     
     template_name = 'user/manager_dashboard.html'
@@ -168,3 +177,16 @@ class ReportView(TemplateView):
         }]
         context['report_data'] = report_data
         return context
+    
+# def pieChart(request):
+#     # Query the database to get counts of tasks in each category
+#     not_started = Task.objects.filter(status='Not started').count()
+#     in_progress = Task.objects.filter(status='In progress').count()
+#     completed = Task.objects.filter(status='Completed').count()
+
+#     # Data for labels and counts
+#     labels = ['Not started', 'In progress', 'Completed']
+#     data = [not_started, in_progress, completed]
+
+#     # Render the template with the data
+#     return render(request, 'user/manager_dashboard.html', {'labels': labels, 'data': data})

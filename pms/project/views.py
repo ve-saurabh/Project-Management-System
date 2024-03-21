@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404
 from django.views import View
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.core.paginator import Paginator
+from django.conf import settings
 
 # Create your views here.
 class ProjectCreationView(CreateView):
@@ -23,6 +25,14 @@ class ProjectListView(ListView):
     template_name = 'project/project_list.html'
     model = Project
     context_object_name = 'projects'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = context[self.context_object_name]
+        paginator = Paginator(queryset, settings.PER_PAGE)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['page_obj'] = page_obj
+        return context
 
 class ProjectDetailView(DetailView):
     model = Project
