@@ -7,6 +7,106 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
+   <div class="container-fluid py-4">
+      <div class="row mt-3">
+         <!-- 1st CARD -->
+         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'list' %}'">
+            <div class="card h-100 card-hover">
+               <div class="card-body p-4">
+                  <div class="row">
+                     <div class="col-8">
+                        <div class="numbers">
+                           <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                           <h5 class="font-weight-bolder">Projects</h5>
+                           <p class="mb-0">
+                              <span class="text-success text-sm font-weight-bolder">{{total_projects}}</span>
+                           </p>
+                           <p class="mb-0">since yesterday</p>
+                        </div>
+                     </div>
+                     <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                           <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- 2nd CARD -->
+         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'module_list' %}'">
+            <div class="card h-100 card-hover">
+               <div class="card-body p-4">
+                  <div class="row">
+                     <div class="col-8">
+                        <div class="numbers">
+                           <p class="text-sm mb-0 text-uppercase font-weight-bold">Project</p>
+                           <h5 class="font-weight-bolder">Modules</h5>
+                           <p class="mb-0">
+                              <span class="text-success text-sm font-weight-bolder">{{total_modules}}</span>
+                           </p>
+                           <p class="mb-0">since last week</p>
+                        </div>
+                     </div>
+                     <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                           <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- 3rd CARD -->
+         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'tasklist' %}'">
+            <div class="card h-100 card-hover">
+               <div class="card-body p-4">
+                  <div class="row">
+                     <div class="col-8">
+                        <div class="numbers">
+                           <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                           <h5 class="font-weight-bolder">Tasks</h5>
+                           <p class="mb-0">
+                              <span class="text-danger text-sm font-weight-bolder">{{total_tasks}}</span>
+                           </p>
+                           <p class="mb-0">since last quarter</p>
+                        </div>
+                     </div>
+                     <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                           <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- 4th CARD -->
+         <div class="col-xl-3 col-sm-6" onClick="location.href='{% url 'developer-list' %}'">
+            <div class="card h-100 card-hover">
+               <div class="card-body p-4">
+                  <div class="row">
+                     <div class="col-8">
+                        <div class="numbers">
+                           <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                           <h5 class="font-weight-bolder">Users</h5>
+                           <p class="mb-0">
+                              <span class="text-success text-sm font-weight-bolder">{{total_users}}</span> 
+                           </p>
+                           <p class="mb-0">than last month</p>
+                        </div>
+                     </div>
+                     <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                           <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
       <div class="row mt-5">
          <div class="col-lg-4 offset-lg-0 mb-lg-0 mb-4">
             <div class="card z-index-2 h-100">
@@ -21,8 +121,8 @@
                               <thead>
                                  <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Task Priority</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update Status</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Priority</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -73,8 +173,8 @@
                               <thead>
                                  <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Task Priority</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update Status</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Priority</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -125,7 +225,6 @@
                               <thead>
                                  <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Priority</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Report</th>
                                  </tr>
                               </thead>
@@ -136,19 +235,12 @@
                                     <td>
                                        <p class="text-center text-xs font-weight-bold mb-0">{{task.title}}</p>
                                     </td>
-                                    <td class="align-middle text-center">
-                                       {% if task.priority == "High" %}
-                                       <span class="text-danger text-xs font-weight-bold">{{task.priority}}</span>
-                                       {% elif task.priority == "Medium" %}
-                                       <span class="text-warning text-xs font-weight-bold">{{task.priority}}</span>
-                                       {% elif task.priority == "Low" %}
-                                       <span class="text-success text-xs font-weight-bold">{{task.priority}}</span>
-                                       {% endif %}
-                                    </td>
                                     <td class="align-middle">
+                                       <center>
                                        <a href="{% url 'report' task.id %}" class="btn btn-success" data-toggle="tooltip" style="margin: 5px;padding: 5px;height: 30px;width: 70px;">
                                           Generate
                                        </a>
+                                       </center>
                                     </td>
                                  </tr>
                                  {% endif %}
@@ -162,6 +254,7 @@
             </div>
          </div>
       </div>
+   </div>
    </body>
 </html>
 {% endblock content %}

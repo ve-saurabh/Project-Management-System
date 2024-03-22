@@ -1,7 +1,8 @@
 {% extends "../base.html" %}
 {% load static %}
 {% block content %}
-<div class="row">
+<div class="container-fluid py-4">
+<div class="row mt-4">
    <div class="col-12">
       <div class="card mb-4">
          <div class="card-header pb-0">
@@ -17,7 +18,9 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Task Name</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Priority</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                        {% if request.user.is_manager %}
                         <th class="text-center text-secondary text-xs opacity-7">ACTION</th>
+                        {% endif %}
                      </tr>
                   </thead>
                   <tbody>
@@ -48,6 +51,7 @@
                         <td class="align-middle text-center">
                            <span class="text-secondary text-xs font-weight-bold">{{ task.status }}</span>
                         </td>
+                        {% if request.user.is_manager %}
                         <td class="align-middle text-center">
                            <a href="{% url 'update_task' task.pk %}" class="btn btn-success" data-toggle="tooltip" data-original-title="Edit module">
                            <i class="fa-solid fa-pen-to-square"></i> EDIT
@@ -59,6 +63,7 @@
                            <i class="fa-solid "></i> ASSIGN
                            </a>
                         </td>
+                        {% endif %}
                      </tr>
                      {% endfor %}
                   </tbody>
@@ -67,5 +72,7 @@
          </div>
       </div>
    </div>
+</div>   
 </div>
+
 {% endblock content %}
