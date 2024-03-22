@@ -1,22 +1,40 @@
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
-  <div class="container-fluid py-1 px-3">
+<nav class="navbar bg-white navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
+    <div class="container-fluid py-1 px-4">
       <nav aria-label="breadcrumb">
-          <h4 class="font-weight-bolder text-white mb-0">
-            {% if request.user.is_manager %}Manager Dashboard{% else %}Developer Dashboard{% endif %}
-          </h4>
+          {% if request.user.is_manager %}
+          <h5 class="font-weight-bold text-black mb-0">Manager Dashboard</h5>
+          {% else %}
+          <h5 class="font-weight-bold text-black mb-0">Developer Dashboard</h5>
+          {% endif %}
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item d-flex align-items-center">
-                  <a href="{% url 'user-profile' request.user.id %}" class="nav-link text-white font-weight-bold px-0">
-                      <i class="fa fa-user-circle me-sm-1" aria-hidden="true"></i>
-                      <span class="d-sm-inline d-none">Hello,</span>
-                      {% if request.user.is_authenticated %}
-                      {{request.user}}
-                      {% endif %}
-                  </a>
-              </li>
-          </ul>
+        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+        </div>
+        <ul class="navbar-nav  justify-content-end">
+          <li class="nav-item d-flex align-items-center">
+            <a href="{% url 'user-profile' request.user.id %}" class="nav-link text-black font-weight-bold px-0">
+              <i class="fa fa-user-circle me-sm-1" aria-hidden="true"></i>
+              <span class="d-sm-inline d-none">Hello</span>
+              {% if request.user.is_authenticated %}
+              {{request.user}}
+              {% endif %}
+            </a>
+          </li>
+          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+            <a href="javascript:;" class="nav-link text-black p-0" id="iconNavbarSidenav">
+              <div class="sidenav-toggler-inner">
+                <i class="sidenav-toggler-line bg-black"></i>
+                <i class="sidenav-toggler-line bg-black"></i>
+                <i class="sidenav-toggler-line bg-black"></i>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item px-3 d-flex align-items-center">
+            <a href="javascript:;" class="nav-link text-black p-0">
+              <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
       </div>
-  </div>
-</nav>
+    </div>
+  </nav>

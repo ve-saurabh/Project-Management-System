@@ -1,25 +1,25 @@
 {% extends "../base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block navbar %}
-{% endblock navbar %}
+{% comment %} {% block navbar %}
+{% endblock navbar %} {% endcomment %}
 {% block nav %}
 {% endblock nav %}
 {% block content %}
 <center >
-   <div class="mt-100">
-      <form method="post" style="border: solid;width: 30rem; background-color: white;margin: 250px;padding: 30px;justify-content: left;">
+   <div class="row mt-100">
+      <div class="col-10">
+      <form method="post" style="border: solid;width: 30rem; background-color: white;margin: 150px;padding: 30px;justify-content: left;">
          {% csrf_token %} 
          <div class="form-group" style="pointer-events: none;">
-            <label for="task">Task:</label>
-            {{ form.task }}
+            {{ form.task | as_crispy_field }}
          </div>
          <div class="form-group">
-            <label for="user">User:</label>
-            {{ form.user }}
+            {{ form.user | as_crispy_field }}
          </div>
-         <input type="submit" value="Submit" class="btn btn-dark" />
+         <input type="submit" value="Submit" class="btn btn-dark"/>
       </form>
+   </div>
    </div>
 </center>
 {% endblock content %}
