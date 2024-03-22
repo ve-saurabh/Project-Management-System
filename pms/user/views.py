@@ -6,7 +6,6 @@ from django.views.generic.edit import CreateView
 from django.views.generic import DetailView, TemplateView,UpdateView
 from .models import User
 from .forms import ManagerRegistrationForm, DeveloperRegistrationForm,UserProfileUpdateForm
-from django.http import HttpRequest, HttpResponse
 #import settings.py
 from django.conf import settings
 from django.core.mail import send_mail
@@ -64,9 +63,6 @@ def sendMail(to, username, password):
     recepientList = [to]
     EMAIL_FROM = settings.EMAIL_HOST_USER
     send_mail(subject, message, EMAIL_FROM, recepientList)
-    #attach file
-    #html
-    # return HttpResponse("Email Sent")
     return True
 
 class UserLoginView(LoginView):
@@ -87,7 +83,7 @@ class UserLoginView(LoginView):
 def manager_required(view_func):
     def wrapper(request, *args, **kwargs):
         if not request.user.is_manager: 
-            return redirect(reverse('developer-dashboard')) # Redirect to an access denied page or another appropriate page
+            return redirect(reverse('developer-dashboard'))
         return view_func(request, *args, **kwargs)
     return wrapper    
 
@@ -104,7 +100,7 @@ class ManagerDashboardView(ListView):
         total_modules = ProjectModule.objects.all().count()
         total_tasks = Task.objects.all().count()
         total_users = User.objects.count()
-        projects = Project.objects.all() #select * from employee
+        projects = Project.objects.all()
         tasks = Task.objects.all()
         context["projects"] = projects
         context["tasks"] = tasks
@@ -136,7 +132,15 @@ class DeveloperDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         #logic to get all projects
         context = {}
-        tasks = Task.objects.all() #select * from employee
+        tasks = Task.objects.all()
+        total_projects = Project.objects.all().count()
+        total_modules = ProjectModule.objects.all().count()
+        total_tasks = Task.objects.all().count()
+        total_users = User.objects.count()
+        context["total_projects"] = total_projects
+        context["total_modules"] = total_modules
+        context["total_tasks"] = total_tasks
+        context["total_users"] = total_users
         context["tasks"] = tasks
         return render(request, 'user/developer_dashboard.html', context)
     
@@ -177,16 +181,3 @@ class ReportView(TemplateView):
         }]
         context['report_data'] = report_data
         return context
-    
-# def pieChart(request):
-#     # Query the database to get counts of tasks in each category
-#     not_started = Task.objects.filter(status='Not started').count()
-#     in_progress = Task.objects.filter(status='In progress').count()
-#     completed = Task.objects.filter(status='Completed').count()
-
-#     # Data for labels and counts
-#     labels = ['Not started', 'In progress', 'Completed']
-#     data = [not_started, in_progress, completed]
-
-#     # Render the template with the data
-#     return render(request, 'user/manager_dashboard.html', {'labels': labels, 'data': data})

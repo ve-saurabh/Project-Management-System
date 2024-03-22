@@ -75,6 +75,14 @@ class ProjectModuleListView(ListView):
     template_name = 'project/module_list.html'
     model = ProjectModule
     context_object_name = 'modules'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = context[self.context_object_name]
+        paginator = Paginator(queryset, settings.PER_PAGE)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['page_obj'] = page_obj
+        return context
  
 class ProjectModuleUpdateView(UpdateView):
     template_name = 'project/update_module.html'
