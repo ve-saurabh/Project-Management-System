@@ -3,28 +3,30 @@
 {% block content %}
 <div class="row mt-4">
 <center>
-<div class="col-md-8 mt-4">
-  <div class="card">
-    <div class="card-header pb-0 px-3">
-      <h6 class="mb-0">Task Completion Report</h6>
-    </div>
-    <div class="card-body pt-4 p-3">
-      {% for data in report_data %}
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">{{ data.task_name }}</h5>
-          <p class="card-text"><strong>Project Name:</strong> {{ data.project_name }}</p>
-          <p class="card-text"><strong>Status:</strong> {{ data.status }}</p>
-          <p class="card-text"><strong>Completion Date:</strong> {{ data.completion_date }}</p>
-          {% comment %} <p class="card-text"><strong>Actual Hours:</strong> {{ data.actual_hours }}</p> {% endcomment %}
-        </div>
+   <div class="col-md-8 mt-4">
+      <div class="card">
+         <div class="card-header pb-0 px-3">
+            <h6 class="mb-0">Task Completion Report</h6>
+         </div>
+         <div class="card-body pt-4 p-3">
+            {% for data in report_data %}
+            <div class="card mb-3">
+               <div class="card-body">
+                  <h5 class="card-title">{{ data.task_name }}</h5>
+                  <p class="card-text"><strong>Project Name:</strong> {{ data.project_name }}</p>
+                  <p class="card-text"><strong>Status:</strong> {{ data.status }}</p>
+                  <p class="card-text"><strong>Completion Date:</strong> {{ data.completion_date }}</p>
+                  {% comment %} 
+                  <p class="card-text"><strong>Actual Hours:</strong> {{ data.actual_hours }}</p>
+                  {% endcomment %}
+               </div>
+            </div>
+            {% endfor %}
+            <div>
+               <a href="{% url 'developer-dashboard' %}" class="btn btn-primary">Back</a>
+            </div>
+         </div>
       </div>
-      {% endfor %}
-      <div>
-        <a href="{% url 'developer-dashboard' %}" class="btn btn-primary">Back</a>
-    </div>
-  </div>
-</div>
 </center>
 </div>
 {% endblock content %}

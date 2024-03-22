@@ -1,136 +1,135 @@
 {% extends "../base.html" %}
 {% load static %}
 {% block nav %}
-
 {% endblock nav %}
 {% block content %}
-
 <div class="card shadow-lg mx-4">
-    <div class="card-body p-3">
+   <div class="card-body p-3">
       <div class="row gx-4">
-        <div class="col-auto">
-          <div class="avatar avatar-xl position-relative">
-            {% if request.user.profile_image %}
-                <img src="{{ request.user.profile_image.url }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
-            {% else %}
-                <label for="profile-upload" class="profile-upload">
-                    <i class="ni ni-image"></i>
-                </label>
-                <input type="file" id="profile-upload" style="display: none;">
-            {% endif %}
-        </div>
-        </div>
-        <div class="col-auto my-auto">
-          <div class="h-100">
-            <h5 class="mb-1">
-              {{request.user.username}}
-            </h5>
-            <p class="mb-0 font-weight-bold text-sm">
-              {% if request.user.is_manager %}
-              Manager
-              {% else %}
-              Developer
-              {% endif %}
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
-          <div class="nav-wrapper position-relative end-0">
-            <ul class="nav nav-pills nav-fill p-1" role="tablist">
-              <li class="nav-item" role="presentation">
-                <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
-                  <i class="ni ni-app"></i>
-                  <span class="ms-2">App</span>
-                </a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false" tabindex="-1">
-                  <i class="ni ni-email-83"></i>
-                  <span class="ms-2">Messages</span>
-                </a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false" tabindex="-1">
-                  <i class="ni ni-settings-gear-65"></i>
-                  <span class="ms-2">Settings</span>
-                </a>
-              </li>
-            <div class="moving-tab position-absolute nav-link" style="padding: 0px; transition: all 0.5s ease 0s; transform: translate3d(0px, 0px, 0px); width: 93px;"><a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">-</a></div></ul>
-          </div>
-        </div>
+         <div class="col-auto">
+            <div class="avatar avatar-xl position-relative">
+               {% if request.user.profile_image %}
+               <img src="{{ request.user.profile_image.url }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+               {% else %}
+               <label for="profile-upload" class="profile-upload">
+               <i class="ni ni-image"></i>
+               </label>
+               <input type="file" id="profile-upload" style="display: none;">
+               {% endif %}
+            </div>
+         </div>
+         <div class="col-auto my-auto">
+            <div class="h-100">
+               <h5 class="mb-1">
+                  {{request.user.username}}
+               </h5>
+               <p class="mb-0 font-weight-bold text-sm">
+                  {% if request.user.is_manager %}
+                  Manager
+                  {% else %}
+                  Developer
+                  {% endif %}
+               </p>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+            <div class="nav-wrapper position-relative end-0">
+               <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                  <li class="nav-item" role="presentation">
+                     <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                     <i class="ni ni-app"></i>
+                     <span class="ms-2">App</span>
+                     </a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                     <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false" tabindex="-1">
+                     <i class="ni ni-email-83"></i>
+                     <span class="ms-2">Messages</span>
+                     </a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                     <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false" tabindex="-1">
+                     <i class="ni ni-settings-gear-65"></i>
+                     <span class="ms-2">Settings</span>
+                     </a>
+                  </li>
+                  <div class="moving-tab position-absolute nav-link" style="padding: 0px; transition: all 0.5s ease 0s; transform: translate3d(0px, 0px, 0px); width: 93px;"><a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">-</a></div>
+               </ul>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
-  <div class="container-fluid py-4 ">
-    <div class="row">
+   </div>
+</div>
+<div class="container-fluid py-4 ">
+   <div class="row">
       <div class="col-md-12">
-        <div class="card">
-          <div class="card-header pb-0">
-            <div class="d-flex align-items-center">
-              <p class="mb-0">Edit Profile</p>
-              <a href="{% url 'user-profile-update' request.user.id %}" class="btn btn-primary btn-sm ms-auto">Settings</a>
+         <div class="card">
+            <div class="card-header pb-0">
+               <div class="d-flex align-items-center">
+                  <p class="mb-0">Edit Profile</p>
+                  <a href="{% url 'user-profile-update' request.user.id %}" class="btn btn-primary btn-sm ms-auto">Settings</a>
+               </div>
             </div>
-          </div>
-          <div class="card-body">
-            <p class="text-uppercase text-sm">User Information</p>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">Username</label>
-                  <p class="text-sm font-weight-bold">{{request.user.username}}</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">Email address</label>
-                  <p class="text-sm font-weight-bold">{{request.user.email}}</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">First name</label>
-                  <p class="text-sm font-weight-bold">{{request.user.first_name}}</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">Last name</label>
-                  <p class="text-sm font-weight-bold">{{request.user.last_name}}</p>
-                </div>
-              </div>
+            <div class="card-body">
+               <p class="text-uppercase text-sm">User Information</p>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Username</label>
+                        <p class="text-sm font-weight-bold">{{request.user.username}}</p>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Email address</label>
+                        <p class="text-sm font-weight-bold">{{request.user.email}}</p>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">First name</label>
+                        <p class="text-sm font-weight-bold">{{request.user.first_name}}</p>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Last name</label>
+                        <p class="text-sm font-weight-bold">{{request.user.last_name}}</p>
+                     </div>
+                  </div>
+               </div>
+               <hr class="horizontal dark">
+               <p class="text-uppercase text-sm">Contact Information</p>
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Address</label>
+                        <p class="text-sm font-weight-bold">{{request.user.address}}</p>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">City</label>
+                        <p class="text-sm font-weight-bold">{{request.user.city}}</p>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Country</label>
+                        <p class="text-sm font-weight-bold">{{request.user.country}}</p>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Postal code</label>
+                        <p class="text-sm font-weight-bold">{{request.user.pincode}}</p>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <hr class="horizontal dark">
-            <p class="text-uppercase text-sm">Contact Information</p>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">Address</label>
-                  <p class="text-sm font-weight-bold">{{request.user.address}}</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">City</label>
-                  <p class="text-sm font-weight-bold">{{request.user.city}}</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">Country</label>
-                  <p class="text-sm font-weight-bold">{{request.user.country}}</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">Postal code</label>
-                  <p class="text-sm font-weight-bold">{{request.user.pincode}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+         </div>
       </div>
-    </div>
-  </div>
-  </div>
+   </div>
+</div>
+</div>
 {% endblock content %}
