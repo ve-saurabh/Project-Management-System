@@ -1,11 +1,35 @@
 {% extends "../base.html" %} 
 {% load static %} 
-{% block content %} 
 {% load crispy_forms_tags %} 
-{% block navbar %} 
-{% endblock navbar %} 
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          	<!-- Add other navbar items as needed -->
+          	<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              	<li class="nav-item">
+                  	<a class="nav-link" href="{% url 'login' %}">Dashboard</a>
+                </li>
+             	<li class="nav-item">
+                	<a class="nav-link" href="{% url 'index' %}">Home</a>
+             	</li>
+             	<!-- Add other navbar items as needed -->
+          	</ul>
+          	<!-- Move Sign In and Sign Up buttons here -->
+          	<div class="d-flex">
+              <a href="{% url 'login' %}" class="btn btn-primary mx-2">Sign In</a>
+              <a href="{% url 'manager-register' %}" class="btn btn-outline-primary">Sign Up</a>
+          	</div>
+        </div>
+    </div>
+</nav>
+{% endblock navbar %}
 {% block nav %} 
 {% endblock nav %}
+{% block content %} 
 <main class="main-content mt-0 ps">
 	<section>
 		<div class="page-header min-vh-100">
