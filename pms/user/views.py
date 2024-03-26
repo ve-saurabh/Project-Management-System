@@ -1,6 +1,7 @@
 from typing import Any
 from django.contrib.auth.forms import AuthenticationForm
 from django.forms import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.views.generic import DetailView, TemplateView,UpdateView
@@ -19,6 +20,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator
 
 
 class ManagerRegisterView(CreateView):
@@ -75,8 +77,11 @@ class UserLoginView(LoginView):
                 return '/user/manager-dashboard/'
             else:
                 return '/user/developer-dashboard/'
-        else:
-            messages.error(self.request, 'Invalid username or password. Please register first.')
+        return '/user/login/'
+    
+    def form_invalid(self, form):
+        messages.error(self.request, 'Invalid username or password')
+        return super().form_invalid(form)
 
 
 # RESTRICTING DEVELOPER FROM ACCESSING MANAGER DASHBOARD
@@ -150,6 +155,14 @@ class UserListView(ListView):
     template_name = 'user/user_list.html'
     model = User
     context_object_name = 'users'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = context[self.context_object_name]
+        paginator = Paginator(queryset, settings.PER_PAGE)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['page_obj'] = page_obj
+        return context
 
 
 class UserProfileView(DetailView):
