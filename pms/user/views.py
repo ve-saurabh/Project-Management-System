@@ -1,7 +1,3 @@
-from typing import Any
-from django.contrib.auth.forms import AuthenticationForm
-from django.forms import BaseModelForm
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.views.generic import DetailView, TemplateView,UpdateView
