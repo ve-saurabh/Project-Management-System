@@ -14,7 +14,7 @@
            <li class="nav-item d-flex align-items-center">
               <a href="{% url 'user-profile' request.user.id %}" class="nav-link text-black font-weight-bold px-0">
               <i class="fa fa-user-circle me-sm-1" aria-hidden="true"></i>
-              <span class="d-sm-inline d-none">Hello</span>
+              <span class="d-sm-inline d-none">Welcome</span>
               {% if request.user.is_authenticated %}
               {{request.user}}
               {% endif %}
