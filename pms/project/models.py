@@ -91,4 +91,3 @@ class UserTask(models.Model):
 
     def __str__(self) -> str:
         return self.task.title +" - "+self.user.username
-
