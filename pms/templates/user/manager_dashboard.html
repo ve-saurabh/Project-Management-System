@@ -19,96 +19,97 @@
    <body>
       <div class="container-fluid py-4">
       <div class="row mt-3">
-      <!-- 1st CARD -->
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'list' %}'">
-         <div class="card h-100 card-hover">
-            <div class="card-body p-4">
-               <div class="row">
-                  <div class="col-8">
-                     <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
-                        <h5 class="font-weight-bolder">Projects</h5>
-                        <p class="mb-0">
-                           <span class="text-success text-sm font-weight-bolder">{{total_projects}}</span>
-                        </p>
-                        <p class="mb-0">since yesterday</p>
+         <!-- 1st CARD -->
+         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'list' %}'">
+            <div class="card h-100 card-hover">
+               <div class="card-body p-4">
+                  <div class="row">
+                     <div class="col-8">
+                        <div class="numbers">
+                           <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                           <h5 class="font-weight-bolder">Projects</h5>
+                           <p class="mb-0">
+                              <span class="text-success text-sm font-weight-bolder">{{total_projects}}</span>
+                           </p>
+                           <p class="mb-0">since yesterday</p>
+                        </div>
                      </div>
-                  </div>
-                  <div class="col-4 text-end">
-                     <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                        <i class="fas fa-project-diagram text-lg opacity-10" aria-hidden="true"></i> <!-- Change the icon here -->
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- 2nd CARD -->
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'module_list' %}'">
-         <div class="card h-100 card-hover">
-            <div class="card-body p-4">
-               <div class="row">
-                  <div class="col-8">
-                     <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Project</p>
-                        <h5 class="font-weight-bolder">Modules</h5>
-                        <p class="mb-0">
-                           <span class="text-success text-sm font-weight-bolder">{{total_modules}}</span>
-                        </p>
-                        <p class="mb-0">since last week</p>
-                     </div>
-                  </div>
-                  <div class="col-4 text-end">
-                     <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                        <i class="fas fa-cogs text-lg opacity-10" aria-hidden="true"></i> <!-- Change the icon here -->
+                     <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                           <i class="fas fa-project-diagram text-lg opacity-10" aria-hidden="true"></i> <!-- Change the icon here -->
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-      </div>
-      <!-- 3rd CARD -->
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'tasklist' %}'">
-         <div class="card h-100 card-hover">
-            <div class="card-body p-4">
-               <div class="row">
-                  <div class="col-8">
-                     <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
-                        <h5 class="font-weight-bolder">Tasks</h5>
-                        <p class="mb-0">
-                           <span class="text-danger text-sm font-weight-bolder">{{total_tasks}}</span>
-                        </p>
-                        <p class="mb-0">since last quarter</p>
+         <!-- 2nd CARD -->
+         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'module_list' %}'">
+            <div class="card h-100 card-hover">
+               <div class="card-body p-4">
+                  <div class="row">
+                     <div class="col-8">
+                        <div class="numbers">
+                           <p class="text-sm mb-0 text-uppercase font-weight-bold">Project</p>
+                           <h5 class="font-weight-bolder">Modules</h5>
+                           <p class="mb-0">
+                              <span class="text-success text-sm font-weight-bolder">{{total_modules}}</span>
+                           </p>
+                           <p class="mb-0">since last week</p>
+                        </div>
                      </div>
-                  </div>
-                  <div class="col-4 text-end">
-                     <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                        <i class="fas fa-tasks text-lg opacity-10" aria-hidden="true"></i> <!-- Change the icon here -->
+                     <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                           <i class="fas fa-cogs text-lg opacity-10" aria-hidden="true"></i> <!-- Change the icon here -->
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-      </div>
-      <!-- 4th CARD -->
-      <div class="col-xl-3 col-sm-6" onClick="location.href='{% url 'developer-list' %}'">
-         <div class="card h-100 card-hover">
-            <div class="card-body p-4">
-               <div class="row">
-                  <div class="col-8">
-                     <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
-                        <h5 class="font-weight-bolder">Users</h5>
-                        <p class="mb-0">
-                           <span class="text-success text-sm font-weight-bolder">{{total_users}}</span> 
-                        </p>
-                        <p class="mb-0">than last month</p>
+         <!-- 3rd CARD -->
+         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'tasklist' %}'">
+            <div class="card h-100 card-hover">
+               <div class="card-body p-4">
+                  <div class="row">
+                     <div class="col-8">
+                        <div class="numbers">
+                           <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                           <h5 class="font-weight-bolder">Tasks</h5>
+                           <p class="mb-0">
+                              <span class="text-danger text-sm font-weight-bolder">{{total_tasks}}</span>
+                           </p>
+                           <p class="mb-0">since last quarter</p>
+                        </div>
+                     </div>
+                     <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                           <i class="fas fa-tasks text-lg opacity-10" aria-hidden="true"></i> <!-- Change the icon here -->
+                        </div>
                      </div>
                   </div>
-                  <div class="col-4 text-end">
-                     <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                        <i class="fas fa-users text-lg opacity-10" aria-hidden="true"></i> <!-- Change the icon here -->
+               </div>
+            </div>
+         </div>
+         <!-- 4th CARD -->         
+         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" onClick="location.href='{% url 'developer-list' %}'">
+            <div class="card h-100 card-hover">
+               <div class="card-body p-4">
+                  <div class="row">
+                     <div class="col-8">
+                        <div class="numbers">
+                           <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                           <h5 class="font-weight-bolder">Users</h5>
+                           <p class="mb-0">
+                              <span class="text-danger text-sm font-weight-bolder">{{total_users}}</span>
+                           </p>
+                           <p class="mb-0">than last quarter</p>
+                        </div>
+                     </div>
+                     <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                           <i class="fas fa-tasks text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -240,29 +241,29 @@
                   </div>
                   <script>
                      var config ={
-                         type:'pie',
-                         data:{ 
-                             labels: ['Not Started', 'In Progress', 'Completed'],
-                             datasets:
-                             [
-                             {
-                                     data:[{{not_started}},{{in_progress}},{{completed}}],
-                                     backgroundColor:
-                                     [
-                                     'rgb(255, 99, 132)',
-                                     'rgb(54, 162, 235)',
-                                     'rgb(75, 192, 192)'
-                                     ],
+                        type:'pie',
+                        data:{ 
+                           labels: ['Not Started', 'In Progress', 'Completed'],
+                           datasets:
+                           [
+                           {
+                                    data:[{{not_started}},{{in_progress}},{{completed}}],
+                                    backgroundColor:
+                                    [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(54, 162, 235)',
+                                    'rgb(75, 192, 192)'
+                                    ],
                                  }
                                  ]
-                             },
-                         options:{
-                             responsive:true
-                         }
+                           },
+                        options:{
+                           responsive:true
+                        }
                      }
                      window.onload = function(){
-                         var ctx = document.getElementById('pie-chart').getContext('2d');
-                         window.myPie = new Chart(ctx,config);
+                        var ctx = document.getElementById('pie-chart').getContext('2d');
+                        window.myPie = new Chart(ctx,config);
                      }
                   </script>
             </div>
