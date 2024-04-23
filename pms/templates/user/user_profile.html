@@ -6,7 +6,7 @@
 <div class="card shadow-lg mx-4">
    <div class="card-body p-3">
       <div class="row gx-4">
-         <div class="col-auto">
+         {% comment %} <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
                {% if request.user.profile_image %}
                <img src="{{ request.user.profile_image.url }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
@@ -17,7 +17,7 @@
                <input type="file" id="profile-upload" style="display: none;">
                {% endif %}
             </div>
-         </div>
+         </div> {% endcomment %}
          <div class="col-auto my-auto">
             <div class="h-100">
                <h5 class="mb-1">

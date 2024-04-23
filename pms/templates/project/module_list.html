@@ -59,9 +59,9 @@
                            <a href="{% url 'update_module' module.pk %}" class="btn btn-success" data-toggle="tooltip" data-original-title="Edit module">
                            <i class="fa-solid fa-pen-to-square"></i> EDIT
                            </a>
-                           <a href="{% url 'delete_module' module.pk %}" class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete module">
-                           <i class="fa-solid fa-trash"></i> DELETE
-                           </a>
+                           <button class="btn btn-danger delete-btn" data-url="{% url 'delete_module' module.pk %}" data-name="{{ module.moduleName }}">
+                              <i class="fa-solid fa-trash"></i> DELETE
+                           </button>
                         </td>
                         {% endif %}
                      </tr>
@@ -74,6 +74,33 @@
    </div>
 </div>
 </div>
+<script>
+   $(document).ready(function() {
+     $('.delete-btn').click(function() {
+       var url = $(this).data('url');
+       var  moduleName = $(this).data('name');
+       if (confirm("Are you sure you want to delete " + moduleName + "?")) {
+         $.ajax({
+           url: url,
+           type: 'POST',
+           data: {
+             csrfmiddlewaretoken: "{{ csrf_token }}",
+             // Add any additional data you need to send to the backend for deletion
+           },
+           success: function(response) {
+             // Handle success, like removing the row from the table
+             // For example:
+             // $(this).closest('tr').remove();
+             location.reload(); // Reload the page to reflect changes
+           },
+           error: function(xhr, errmsg, err) {
+             // Handle error
+           }
+         });
+       }
+     });
+   });
+</script>
 <!-- Pagination -->
 <nav aria-label="Page navigation example">
    <ul class="pagination justify-content-center">

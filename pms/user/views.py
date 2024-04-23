@@ -10,7 +10,7 @@ from django.contrib.auth.views import LoginView
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from project.models import Project,Task, ProjectModule
+from project.models import Project,Task, ProjectModule, UserTask
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -54,9 +54,9 @@ class DeveloperRegisterView(CreateView):
         else:
             return super().form_valid(form)
         
-def sendMail(to, username, password):
+def sendMail(to, username):
     subject = 'Welcome to pms'
-    message = f"your {username} and password is {password}"
+    message = f"Hello {username}, your account has been created successfully."
     # recepientList = ["vermasaurabh0204@gmail.com"]
     recepientList = [to]
     EMAIL_FROM = settings.EMAIL_HOST_USER
