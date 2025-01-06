@@ -25,29 +25,29 @@ A web-based **Project Management System** built using **Django** to efficiently 
 ## Installation & Setup
 
 1. Clone the repository:
-```bash
-git clone https://github.com/ve-saurabh/Project-Management-System.git
+   ```bash
+   git clone https://github.com/ve-saurabh/Project-Management-System.git
 
 3. Navigate to the project directory
-```bash
-cd Project-Management-System
+   ```bash
+   cd Project-Management-System
 
 4. Setup a virtual environment
-```bash
-python -m venv env
+   ```bash
+   python -m venv env
 
 5. Activate the virtual environment
-```bash
-env\Scripts\activate
+   ```bash
+   env\Scripts\activate
 
 6. Apply database migrations
-```bash
-python manage.py migrate
+   ```bash
+   python manage.py migrate
 
-7. Create SuperUser
-```bash
-python manage.py createsuperuser
+8. Create SuperUser
+   ```bash
+   python manage.py createsuperuser
 
 8. Run the server
-```bash
-python manage.py runserver
+   ```bash
+   python manage.py runserver
